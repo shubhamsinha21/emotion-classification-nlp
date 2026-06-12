@@ -1,6 +1,7 @@
 import joblib
 
 from preprocess import preprocess_text
+from logger import logger
 
 
 MODEL_PATH = "models/emotion_model.pkl"
@@ -29,6 +30,10 @@ def predict_emotion(text):
     prediction = model.predict(
         vectorized_text
     )[0]
+    
+    logger.info(
+    f"Prediction made: {prediction}"
+)
 
     return {
         "input_text": text,
@@ -51,3 +56,4 @@ if __name__ == "__main__":
     print("\nPrediction Result:\n")
 
     print(result)
+    

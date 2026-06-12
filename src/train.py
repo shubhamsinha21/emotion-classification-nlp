@@ -15,6 +15,10 @@ import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from logger import logger
+
+logger.info("Training Started")
+
 
 def load_dataset(file_path):
     """
@@ -107,6 +111,8 @@ if __name__ == "__main__":
         y_test,
         lr_predictions
     )
+    
+    logger.info("Training Completed")
 
     print(f"\nAccuracy: {lr_accuracy:.4f}")
 
@@ -181,6 +187,7 @@ joblib.dump(
     )
 
 print("\nModel Saved Successfully!")
+logger.info("Model Saved Successfully")
 
 cm = confusion_matrix(
         y_test,
