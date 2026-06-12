@@ -25,6 +25,14 @@ The project includes:
 
 ---
 
+## 🖥️ Application UI
+
+### 🖥️ Streamlit UI - Home Screen
+
+![UI](images/ui.png)
+
+---
+
 ## 🎯 Problem Statement
 
 Understanding human emotions from text is an important NLP task used in:
@@ -181,11 +189,7 @@ Final Accuracy:
 
 ## 📉 Confusion Matrix
 
-Add screenshot here:
-
-```markdown
 ![Confusion Matrix](outputs/confusion_matrix.png)
-```
 
 ---
 
