@@ -2,28 +2,19 @@ import re
 import nltk
 
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 
 
 def download_nltk_resources():
     """
     Download required NLTK resources.
-    Works both locally and on Streamlit Cloud.
+    Streamlit Cloud safe version.
     """
 
-    resources = [
-        ("tokenizers/punkt", "punkt"),
-        ("tokenizers/punkt_tab", "punkt_tab"),
-        ("corpora/stopwords", "stopwords"),
-    ]
+    try:
+        nltk.data.find("corpora/stopwords")
 
-    for resource_path, package_name in resources:
-
-        try:
-            nltk.data.find(resource_path)
-
-        except LookupError:
-            nltk.download(package_name)
+    except LookupError:
+        nltk.download("stopwords")
 
 
 download_nltk_resources()
@@ -60,7 +51,7 @@ def remove_stopwords(text):
     Remove stop words
     """
 
-    tokens = word_tokenize(text)
+    tokens = text.split()
 
     filtered_tokens = [
         word
@@ -68,7 +59,9 @@ def remove_stopwords(text):
         if word not in STOP_WORDS
     ]
 
-    return " ".join(filtered_tokens)
+    return " ".join(
+        filtered_tokens
+    )
 
 
 def preprocess_text(text):
