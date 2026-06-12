@@ -10,6 +10,7 @@ from sklearn.metrics import (
     confusion_matrix
 )
 from sklearn.svm import LinearSVC
+import joblib
 
 
 def load_dataset(file_path):
@@ -159,3 +160,21 @@ if __name__ == "__main__":
         print("\nWinner: Linear SVC")
     else:
         print("\nWinner: Logistic Regression")
+        
+        
+print(f"Logistic Regression : {lr_accuracy:.4f}")
+print(f"Linear SVC          : {svm_accuracy:.4f}")
+
+# Save best model
+
+joblib.dump(
+        svm_model,
+        "models/emotion_model.pkl"
+    )
+
+joblib.dump(
+        vectorizer,
+        "models/tfidf_vectorizer.pkl"
+    )
+
+print("\nModel Saved Successfully!")
