@@ -6,21 +6,31 @@ from nltk.tokenize import word_tokenize
 
 
 def download_nltk_resources():
+    """
+    Download required NLTK resources.
+    Works both locally and on Streamlit Cloud.
+    """
 
-    try:
-        stopwords.words("english")
-    except LookupError:
-        nltk.download("stopwords")
+    resources = [
+        ("tokenizers/punkt", "punkt"),
+        ("tokenizers/punkt_tab", "punkt_tab"),
+        ("corpora/stopwords", "stopwords"),
+    ]
 
-    try:
-        word_tokenize("test")
-    except LookupError:
-        nltk.download("punkt")
+    for resource_path, package_name in resources:
+
+        try:
+            nltk.data.find(resource_path)
+
+        except LookupError:
+            nltk.download(package_name)
 
 
 download_nltk_resources()
 
-STOP_WORDS = set(stopwords.words("english"))
+STOP_WORDS = set(
+    stopwords.words("english")
+)
 
 
 def clean_text(text):
@@ -30,9 +40,17 @@ def clean_text(text):
 
     text = str(text).lower()
 
-    text = re.sub(r"[^a-zA-Z\s]", "", text)
+    text = re.sub(
+        r"[^a-zA-Z\s]",
+        "",
+        text
+    )
 
-    text = re.sub(r"\s+", " ", text).strip()
+    text = re.sub(
+        r"\s+",
+        " ",
+        text
+    ).strip()
 
     return text
 
