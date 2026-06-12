@@ -3,14 +3,16 @@ import joblib
 from preprocess import preprocess_text
 
 
-# Load model
+MODEL_PATH = "models/emotion_model.pkl"
+VECTORIZER_PATH = "models/tfidf_vectorizer.pkl"
+
 
 model = joblib.load(
-    "models/emotion_model.pkl"
+    MODEL_PATH
 )
 
 vectorizer = joblib.load(
-    "models/tfidf_vectorizer.pkl"
+    VECTORIZER_PATH
 )
 
 
@@ -28,7 +30,12 @@ def predict_emotion(text):
         vectorized_text
     )[0]
 
-    return prediction
+    return {
+        "input_text": text,
+        "processed_text": processed_text,
+        "predicted_emotion": prediction,
+        "model": "Linear SVC"
+    }
 
 
 if __name__ == "__main__":
@@ -37,12 +44,10 @@ if __name__ == "__main__":
         "I am feeling very happy today"
     )
 
-    emotion = predict_emotion(
+    result = predict_emotion(
         sample_text
     )
 
-    print("\nInput:")
-    print(sample_text)
+    print("\nPrediction Result:\n")
 
-    print("\nPredicted Emotion:")
-    print(emotion)
+    print(result)
