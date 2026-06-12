@@ -29,7 +29,7 @@ The project includes:
 
 ### 🖥️ Streamlit UI - Home Screen
 
-![UI](images/ui.png)
+![UI](ui/ui.png)
 
 ---
 
