@@ -1,4 +1,4 @@
-# 😊 Emotion Detection System
+# 😊 End-to-End NLP Emotion Classification System
 
 ## 🚀 Overview
 
