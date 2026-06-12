@@ -55,9 +55,56 @@ col1, col2 = st.columns([2, 1])
 
 with col1:
 
+# Example Inputs
+
+    st.subheader("Try Example Inputs")
+
+    example_col1, example_col2, example_col3 = st.columns(3)
+
+    with example_col1:
+
+        if st.button("😄 Joy Example"):
+            st.session_state.example_text = (
+             "I am feeling very happy today"
+        )
+
+        if st.button("😢 Sad Example"):
+            st.session_state.example_text = (
+            "I miss my old friends and feel lonely"
+        )
+
+    with example_col2:
+
+        if st.button("😨 Fear Example"):
+            st.session_state.example_text = (
+                "I am extremely nervous about tomorrow"
+            )
+
+        if st.button("😡 Anger Example"):
+            st.session_state.example_text = (
+                "I am furious about what happened"
+            )
+
+    with example_col3:
+
+        if st.button("❤️ Love Example"):
+            st.session_state.example_text = (
+                "I really love spending time with my family"
+            )
+
+        if st.button("😲 Surprise Example"):
+            st.session_state.example_text = (
+                "I cannot believe this happened to me"
+            )
+
+    # Default value
+
+    if "example_text" not in st.session_state:
+        st.session_state.example_text = ""
+
     user_text = st.text_area(
         "Enter Text",
-        placeholder="Type your text here...",
+        value=st.session_state.example_text,
         height=200
     )
 
@@ -125,6 +172,45 @@ with col2:
         "Vocabulary Size",
         "5,000"
     )
+    
+    st.divider()
+
+    st.subheader("🚀 Project Highlights")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.info(
+            """
+            **Dataset**
+            
+            16,000 Samples
+            
+            6 Emotion Classes
+            """
+        )
+
+    with col2:
+        st.info(
+            """
+            **Best Model**
+            
+            Linear SVC
+            
+            88.81% Accuracy
+            """
+        )
+
+    with col3:
+        st.info(
+            """
+            **Features**
+            
+            TF-IDF
+            
+            5,000 Features
+            """
+        )
 
 # -------------------------------
 # Confusion Matrix
