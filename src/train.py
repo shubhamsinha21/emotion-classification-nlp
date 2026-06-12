@@ -12,6 +12,9 @@ from sklearn.metrics import (
 from sklearn.svm import LinearSVC
 import joblib
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 def load_dataset(file_path):
     """
@@ -178,3 +181,47 @@ joblib.dump(
     )
 
 print("\nModel Saved Successfully!")
+
+cm = confusion_matrix(
+        y_test,
+        svm_predictions
+    )
+
+labels = sorted(
+        y.unique()
+    )
+
+plt.figure(
+        figsize=(8, 6)
+    )
+
+sns.heatmap(
+        cm,
+        annot=True,
+        fmt="d",
+        cmap="Blues",
+        xticklabels=labels,
+        yticklabels=labels
+    )
+
+plt.title(
+        "Emotion Classification Confusion Matrix"
+    )
+
+plt.xlabel(
+        "Predicted"
+    )
+
+plt.ylabel(
+        "Actual"
+    )
+
+plt.tight_layout()
+
+plt.savefig(
+        "outputs/confusion_matrix.png"
+    )
+
+print(
+        "\nConfusion Matrix Saved!"
+    )
